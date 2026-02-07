@@ -2,196 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Very Serious Question 💘</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💖 A Little Surprise 💖</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Comic Sans MS", "Poppins", cursive;
-    }
-
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
     .card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 24px;
+      background: #fff;
+      padding: 35px;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       max-width: 420px;
-      width: 90%;
-      position: relative;
+      box-shadow: 0 20px 40px rgba(255, 105, 135, 0.4);
+      animation: fadeIn 1.2s ease;
     }
 
-    h1 { font-size: 2rem; }
-    h2 { margin-top: 1rem; }
-    p { font-size: 1.1rem; }
-
-    .buttons {
-      position: relative;
-      height: 70px;
-      margin-top: 2rem;
+    h1, h2 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
     }
 
-    button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 999px;
-      font-size: 1rem;
+    p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* 💝 Gift box */
+    .gift-box {
+      font-size: 90px;
+      margin: 20px 0;
       cursor: pointer;
-      transition: transform 0.2s ease;
-      white-space: nowrap;
+      animation: pulse 1.5s infinite;
+      transition: transform 0.3s;
     }
 
-    #yesBtn {
-      background: #ff4d6d;
-      color: white;
+    .gift-box:hover {
+      transform: scale(1.15);
     }
 
-    #yesBtn:hover {
-      transform: scale(1.1);
+    /* 💗 Floating hearts */
+    .heart {
+      position: fixed;
+      font-size: 18px;
+      color: #ff4d6d;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
     }
 
-    #noBtn {
-      background: #ccc;
-      position: absolute;
-      right: 0;
-    }
-
-    /* Loading Screen */
-    .loading {
-      font-size: 1.4rem;
-      animation: pulse 1.2s infinite;
+    /* 🖼️ Surprise Image */
+    .surprise-img {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 16px;
+      margin: 20px 0;
+      box-shadow: 0 10px 25px rgba(255, 105, 135, 0.3);
+      animation: fadeIn 1.5s ease;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.4; }
-      50% { opacity: 1; }
-      100% { opacity: 0.4; }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
 
-    .celebration {
-      font-size: 2rem;
-      animation: pop 0.6s ease forwards;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.6); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .hearts {
-      position: fixed;
-      top: -10px;
-      font-size: 1.5rem;
-      animation: fall 3s linear forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh) scale(1);
         opacity: 0;
       }
+      to {
+        transform: translateY(-10vh) scale(1.4);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 
 <body>
-  <div class="card" id="card">
-    <h1>Hey Anuuuuu❤️</h1>
-    <p>I have a very serious, extremely important question…</p>
-    <h2>Will you be my Valentine? 💘</h2>
 
-    <div class="buttons">
-      <button id="yesBtn">YES 😍</button>
-      <button id="noBtn">No 🙄</button>
-    </div>
+  <!-- Screen 1 -->
+  <div class="card" id="surprise">
+    <h1>💖 Hey My Doc 💖</h1>
+    <p>I made something just for you…</p>
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <p>Tap the gift 💌</p>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="card hidden" id="message">
+    <h1>🎂 Happy Birthday, My Love 🎂</h1>
+    <p>
+      On your special day, I just want you to know how grateful I am for you.
+      You make my world softer, warmer, and brighter 💕
+    </p>
+    <div class="gift-box" onclick="showGift()">💝</div>
+    <p>One more tap… 💗</p>
+  </div>
+
+  <!-- Screen 3 (Final Surprise) -->
+  <div class="card hidden" id="gift">
+    <h2>💞 My Favorite Memory 💞</h2>
+
+    <!-- 🖼️ ADD YOUR IMAGE HERE -->
+    <img
+      src="AK.JPG"
+      alt="Our memory"
+      class="surprise-img"
+    />
+
+    <p>
+      Every moment with you means more than words can say 🌸
+    </p>
+    <p>
+      Happy Birthday, my forever 💘
+    </p>
   </div>
 
   <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const card = document.getElementById("card");
-
-    let noCount = 0;
-
-    const noMessages = [
-      "No 🙄",
-      "Are you sure? 😐",
-      "Think again 😏",
-      "Wrong answer 😤",
-      "Try harder 😈",
-      "Nice try 😂",
-      "Absolutely not 😜",
-      "You can’t escape 😎"
-    ];
-
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 300 - 150;
-      const y = Math.random() * 160 - 80;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-      noCount++;
-      noBtn.textContent = noMessages[Math.min(noCount, noMessages.length - 1)];
-    });
-
-    noBtn.addEventListener("click", () => {
-      fakeLoading();
-    });
-
-    function fakeLoading() {
-      card.innerHTML = `
-        <div class="loading">
-          💻 Calculating correct answer…<br><br>
-          Please wait ❤️
-        </div>
-      `;
-
-      setTimeout(() => {
-        card.innerHTML = `
-          <h2>Calculation complete ✅</h2>
-          <p>The correct answer is:</p>
-          <button id="finalYes">YES 😍💘</button>
-        `;
-
-        document.getElementById("finalYes").addEventListener("click", yesCelebration);
-      }, 2500);
+    function openGift() {
+      document.getElementById("surprise").classList.add("hidden");
+      document.getElementById("message").classList.remove("hidden");
+      startHearts();
     }
 
-    yesBtn.addEventListener("click", yesCelebration);
-
-    function yesCelebration() {
-      card.innerHTML = `
-        <div class="celebration">
-          YAYYYYY 💖💖💖<br><br>
-          Best decision ever 🥰<br>
-          Love you Little one.. 💕
-        </div>
-      `;
-      launchHearts();
+    function showGift() {
+      document.getElementById("message").classList.add("hidden");
+      document.getElementById("gift").classList.remove("hidden");
+      startHearts();
     }
 
-    function launchHearts() {
-      for (let i = 0; i < 30; i++) {
+    function startHearts() {
+      for (let i = 0; i < 15; i++) {
         const heart = document.createElement("div");
-        heart.className = "hearts";
-        heart.innerHTML = "💗";
+        heart.className = "heart";
+        heart.innerText = "💗";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = 2 + Math.random() * 2 + "s";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 4000);
+        setTimeout(() => heart.remove(), 6000);
       }
     }
   </script>
+
 </body>
 </html>
